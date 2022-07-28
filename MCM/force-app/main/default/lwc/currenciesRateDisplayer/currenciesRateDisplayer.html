@@ -1,0 +1,16 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <template if:true={results}>
+        <lightning-datatable
+        data={results} 
+        columns={columns} 
+        key-field="Id" 
+        hide-checkbox-column 
+        show-row-number-column
+        default-sort-direction={defaultSortDirection}>
+        </lightning-datatable>
+    </template>
+    <template if:true={error}>
+        {error}
+    </template>
+</template>

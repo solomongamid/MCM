@@ -14,7 +14,7 @@ public with sharing class DisplayCurrenciesRate_CTR {
             Schema.SObjectType.CurrencyType.fields.ConversionRate.isAccessible() &&
             Schema.SObjectType.CurrencyType.fields.LastModifiedDate.isAccessible()
         ) {
-            currencyRates = [Select Id, IsoCode, ConversionRate, LastModifiedDate From CurrencyType where isActive = true];
+            currencyRates = [Select Id, IsoCode, ConversionRate, LastModifiedDate, isCorporate From CurrencyType where isActive = true];
         }
         
         return currencyRates;

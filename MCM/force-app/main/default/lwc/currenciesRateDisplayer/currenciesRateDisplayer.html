@@ -1,16 +1,51 @@
-<!-- sldsValidatorIgnore -->
-<template>
-    <template if:true={results}>
+<template >
+  <template if:true={currCodes}>
+    <article class="slds-card">
+      <div class="slds-card__header slds-grid">
+        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+          <div class="slds-media__figure">
+            <lightning-icon
+              icon-name="utility:money"
+              alternative-text="Money"
+              title="money icon with success variant"
+              variant="success"
+            >
+            </lightning-icon>
+          </div>
+
+          <div class="slds-media__body">
+            <h2 class="slds-card__header-title">
+              <span>Exchange Rate Information</span>
+            </h2>
+          </div>
+          <div>
+            <h4 >
+              <span>Corporate Currency : {corporateCurr}</span>
+            </h4>
+          </div>
+        </header>
+      </div>
+      <div class="slds-card__body">
         <lightning-datatable
-        data={results} 
-        columns={columns} 
-        key-field="Id" 
-        hide-checkbox-column 
-        show-row-number-column
-        default-sort-direction={defaultSortDirection}>
+          data={currCodes}
+          columns={columns}
+          key-field="Id"
+          hide-checkbox-column
+          show-row-number-column
+          default-sort-direction={defaultSortDirection}
+        >
         </lightning-datatable>
-    </template>
-    <template if:true={error}>
-        {error}
-    </template>
+      </div>
+      
+    </article>
+  </template>
+  <template if:true={error}> {error} </template>
+
+  <template if:true={oppCurrCoversionRate}>
+    <div class="slds-m-top_medium slds-m-bottom_x-large">
+        <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+            Opp Currency Exchange Rate is : <code>{oppCurrCoversionRate}</code>.
+        </h2>
+    </div>
+  </template>
 </template>

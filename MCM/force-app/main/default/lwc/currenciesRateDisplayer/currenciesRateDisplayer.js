@@ -14,7 +14,7 @@ const columns = [
   {
     label: "Conversion Rate",
     fieldName: "ConversionRate",
-    type: "currency",
+    type: "Decimal",
     typeAttributes: { step: "0.01" }, //add currencyCode: 'EUR' to to display currency on Euro
     cellAttributes: { alignment: "left" },
     sortable: true
@@ -24,13 +24,16 @@ const fields = [CurrencyIsoCode_FIELD];
 
 export default class CurrenciesRateDisplayer extends LightningElement {
   @api recordId;
+  //TODO : Use design Attribute to let admin choose btn display all change rates or only opportunity change rate
+  @api displayAllChangeRates;
+  @api displayOppCurrChangeRate;
   columns = columns;
   @track currCodes;
   @track error;
   @track oppCurrIsoCodeValue;
   @track corporateCurr = "EURO";
   @track connectedCallbackexecuted = false;
-  @track oppCurrCoversionRate;
+  @track oppCurrConversionRate;
   defaultSortDirection = "asc";
   oppRecord;
   oppError;
@@ -42,14 +45,11 @@ export default class CurrenciesRateDisplayer extends LightningElement {
       console.log("this.data INfo :: " + JSON.stringify(data));
       this.oppRecord = data;
       this.oppCurrIsoCodeValue = this.oppRecord.fields.CurrencyIsoCode.value;
-      console.log("this.this.oppCurrIsoCodeValue Wired INfo :: " + this.oppCurrIsoCodeValue );
     } else if(error){
       
       this.oppError = error;
     }
   }
-
-  //TODO : Use configured variables to let admin choose btn display all change rates or only opportunity change rate
 
   connectedCallback() {
     var corporateCurrItem;
@@ -80,7 +80,7 @@ export default class CurrenciesRateDisplayer extends LightningElement {
     if(this.connectedCallbackexecuted === true){
       console.log("this.oppCurrIsoCodeValue renderedCallback INfo :: " + this.oppCurrIsoCodeValue);
       console.log("this.currCodes renderedCallback INfo :: " + JSON.stringify(this.currCodes));
-      this.oppCurrCoversionRate = this.currCodes.find((obj) => { return obj.IsoCode === this.oppCurrIsoCodeValue;}).ConversionRate;
+      this.oppCurrConversionRate = this.currCodes.find((obj) => { return obj.IsoCode === this.oppCurrIsoCodeValue;}).ConversionRate;
     }
     
   }

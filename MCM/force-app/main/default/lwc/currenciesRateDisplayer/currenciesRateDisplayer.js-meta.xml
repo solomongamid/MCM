@@ -4,7 +4,11 @@
     <isExposed>true</isExposed>
     <targets>
         <target>lightning__RecordPage</target>
-        <target>lightning__AppPage</target>
-        <target>lightning__HomePage</target>
     </targets>
+    <targetConfigs>  
+        <targetConfig targets="lightning__RecordPage">
+            <property name="displayAllChangeRates" type="Boolean" default="false" label="display all currencies change rates ?"/>
+            <property name="displayOppCurrChangeRate" type="Boolean" default="true" label="display opportunity's currency change rate ?"/>
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>

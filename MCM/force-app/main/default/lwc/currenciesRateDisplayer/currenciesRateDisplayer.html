@@ -1,5 +1,5 @@
 <template >
-  <template if:true={currCodes}>
+  <template if:true={displayAllChangeRates}>
     <article class="slds-card">
       <div class="slds-card__header slds-grid">
         <header class="slds-media slds-media_center slds-has-flexi-truncate">
@@ -41,11 +41,13 @@
   </template>
   <template if:true={error}> {error} </template>
 
-  <template if:true={oppCurrCoversionRate}>
-    <div class="slds-m-top_medium slds-m-bottom_x-large">
-        <h2 class="slds-text-heading_medium slds-m-bottom_medium">
-            Opp Currency Exchange Rate is : <code>{oppCurrCoversionRate}</code>.
-        </h2>
-    </div>
+  <template if:true={displayOppCurrChangeRate}>
+    <template if:true={oppCurrConversionRate}>
+      <div class="slds-m-top_medium slds-m-bottom_x-large">
+          <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+              Opp Currency Exchange Rate is : <code>{oppCurrConversionRate} {corporateCurr}</code>
+          </h2>
+      </div>
+    </template>
   </template>
 </template>
